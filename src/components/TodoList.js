@@ -17,10 +17,10 @@ export default function () {
                         >
                         <span 
                             onDoubleClick={() => dispatch({type: "TOGGLE_TODO", payload: todo})}
-                            className={`flex-1 ml-12 cursor-pointer ${todo.complete && "line-through text-grey-800"}`}>
+                            className={`flex-1 ml-12 cursor-pointer ${todo.complete && "line-through"}`}>
                             {todo.text}</span>
-                        <button className="pr-6">X</button>
-                        <button>Delete</button>
+                        <button onClick={() => dispatch({type: "SET_CURRENT_TODO", payload: todo})} className="pr-6">Edit</button>
+                        <button onClick={() => dispatch({type: "REMOVE_TODO", payload: todo})}>Delete</button>
                     </li>
                     
                 ))}
