@@ -1,13 +1,25 @@
-import React from 'react';
+import React, {useContext, useReducer} from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+// import App from './App';
 import * as serviceWorker from './serviceWorker';
+import TodosContext from './context';
+import todosReducer from './reducer';
+import TodoList from './components/TodoList';
+
+
+const App = () => {
+  const initialState = useContext(TodosContext)
+  const [state, dispatch] = useReducer(todosReducer, initialState)
+
+  return (
+    <TodosContext.Provider value={{state, dispatch}}>
+      <TodoList />
+    </TodosContext.Provider>
+  )
+}
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+    <App />,
   document.getElementById('root')
 );
 
